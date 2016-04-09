@@ -7,8 +7,12 @@ googleScript.onload = () => {
 };
 document.body.appendChild(googleScript);
 
-let maxTryCount = 50;
+/**
+ * Try to get gapi
+ * @returns {Promise}
+ */
 function getGapi() {
+  let maxTryCount = 50;
 
   return new Promise((resolve, reject) => {
 
@@ -39,9 +43,12 @@ function getGapi() {
  * Client-side (Cordova или Web Browser) аворизация Google OAuth 2.0
  * @param CLIENT_ID {String}
  * @param SCOPES {Array}
+ * @param options {Object|undefined}
  * @returns {Promise}
  */
-function googleOAuth(CLIENT_ID, SCOPES) {
+function googleOAuth(CLIENT_ID, SCOPES, options) {
+  const immediate = (options && options.immediate) || false;
+  const redirect_uri = (options && options.redirect_uri) || 'http://localhost/callback';
 
   return new Promise((resolve, reject) => {
 
@@ -54,7 +61,7 @@ function googleOAuth(CLIENT_ID, SCOPES) {
             client_id: CLIENT_ID,
             scope: SCOPES,
             response_type: 'token',
-            immediate: false
+            immediate
           }, (token) => {
             gapi.client.setApiKey('');
             gapi.auth.setToken(token);
@@ -63,8 +70,6 @@ function googleOAuth(CLIENT_ID, SCOPES) {
           });
 
         } else if (window.cordova && window.cordova.InAppBrowser) {
-
-          const redirect_uri = 'http://localhost/callback';
 
           const browserRef = window.cordova.InAppBrowser.open(
             `https://accounts.google.com/o/oauth2/auth?client_id=${CLIENT_ID}` +
