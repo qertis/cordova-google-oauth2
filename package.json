@@ -1,0 +1,24 @@
+{
+  "name": "cordova-google-oauth2",
+  "version": "1.0.0",
+  "description": "## Installation",
+  "main": "googleOAuth2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qertis/cordova-google-oauth2.git"
+  },
+  "keywords": [
+    "cordova-plugin",
+    "oauth-2",
+    "google-oauth2"
+  ],
+  "author": "qertis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qertis/cordova-google-oauth2/issues"
+  },
+  "homepage": "https://baskovsky.ru/2021/04/cordova-google-oauth2/"
+}
